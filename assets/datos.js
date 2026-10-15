@@ -96,6 +96,14 @@ const DATOS = {
     }
   },
 
+  /* ---- Ficha del héroe: metadatos en monoespaciada. Solo datos reales. ---- */
+  ficha: [
+    { clave: { es: "Ubicación", en: "Location" },     valor: { es: "Sevilla, España", en: "Seville, Spain" } },
+    { clave: { es: "Programando", en: "Coding" },     valor: { es: "desde los 15 años", en: "since age 15" } },
+    { clave: { es: "Disponible", en: "Available" },   valor: { es: "sí, para contratar", en: "yes, for hire" } },
+    { clave: { es: "Correo", en: "Email" },           valor: "josemanuelbabaciugheorghiu@gmail.com" }
+  ],
+
   /* ---- Selector de público -----------------------------------------------
      Las dos mitades de la web: la de venta y la de portfolio. La `pista` es
      la línea pequeña de debajo de cada botón. -------------------------- */
@@ -156,8 +164,9 @@ const DATOS = {
       },
       web: "https://proyecto2526frontend-jose-manuelbg.vercel.app",
       repo: "https://github.com/JoseManuelbg/MentorlyBackend",
-      imagen: "",
-      imagenAlt: { es: "", en: "" }
+      /* Portada generada, NO una captura: se cambia por la captura real cuando exista. */
+      imagen: "assets/fotos/portada-mentorly.jpg",
+      imagenAlt: { es: "Portada tipográfica de Mentorly", en: "Typographic cover for Mentorly" }
     },
     {
       nombre: "agencyos",
@@ -174,8 +183,9 @@ const DATOS = {
       },
       web: "",
       repo: "https://github.com/JoseManuelbg/agencyos",
-      imagen: "",
-      imagenAlt: { es: "", en: "" }
+      /* Portada generada, NO una captura: se cambia por la captura real cuando exista. */
+      imagen: "assets/fotos/portada-agencyos.jpg",
+      imagenAlt: { es: "Portada tipográfica de agencyos", en: "Typographic cover for agencyos" }
     },
     {
       nombre: "carquiz",
@@ -191,8 +201,9 @@ const DATOS = {
       },
       web: "https://carquiz-two.vercel.app",
       repo: "https://github.com/JoseManuelbg/carquiz",
-      imagen: "",
-      imagenAlt: { es: "", en: "" }
+      /* Portada generada, NO una captura: se cambia por la captura real cuando exista. */
+      imagen: "assets/fotos/portada-carquiz.jpg",
+      imagenAlt: { es: "Portada tipográfica de carquiz", en: "Typographic cover for carquiz" }
     },
     {
       nombre: "agent-kit",
@@ -208,8 +219,9 @@ const DATOS = {
       },
       web: "",
       repo: "https://github.com/JoseManuelbg/agent-kit",
-      imagen: "",
-      imagenAlt: { es: "", en: "" }
+      /* Portada generada, NO una captura: se cambia por la captura real cuando exista. */
+      imagen: "assets/fotos/portada-agent-kit.jpg",
+      imagenAlt: { es: "Portada tipográfica de agent-kit", en: "Typographic cover for agent-kit" }
     }
   ],
 
@@ -298,7 +310,8 @@ const DATOS = {
       stackSobre: { es: "Stack", en: "Stack" },
       stackTitulo: { es: "Con qué trabajo", en: "What I work with" },
       contactoSobre: { es: "Contacto", en: "Contact" },
-      contactoTitulo: { es: "Escríbeme", en: "Get in touch" },
+      contactoTitulo: { es: "Escríbeme.", en: "Write to me." },
+      heroeSobre: { es: "Ficha · Desarrollador full-stack", en: "Profile · Full-stack developer" },
       contactoEntrada: {
         es: "El correo es la vía rápida: contesto el mismo día.",
         en: "Email is the fastest route: I reply the same day."
@@ -317,7 +330,7 @@ const DATOS = {
       es: "Programando desde los 15 años.",
       en: "Coding since I was 15."
     },
-    idioma: { es: "English", en: "Español" },
+    idioma: { es: "EN", en: "ES" },
     idiomaEtiqueta: { es: "Cambiar a inglés", en: "Switch to Spanish" }
   }
 };

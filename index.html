@@ -7,18 +7,14 @@
 <meta name="description" content="Desarrollador full-stack en Sevilla. Webs para negocios que cargan rápido y aplicaciones con Spring Boot, React y TypeScript. Cinco proyectos abiertos que puedes revisar.">
 <!-- Web propia y real: sin noindex y con robots.txt en Allow. -->
 <!-- [PENDIENTE: dominio propio] Al comprarlo hay que cambiar canonical, og:url,
-     sitemap.xml, robots.txt y el JSON-LD de abajo. Mientras tanto, GitHub Pages bajo /Portfolio/. -->
+     sitemap.xml, robots.txt, 404.html y el JSON-LD. Mientras tanto, GitHub Pages bajo /Portfolio/. -->
 <link rel="canonical" href="https://josemanuelbg.github.io/Portfolio/">
-<meta name="theme-color" content="#0E0E0E">
-
-<!-- Las dos versiones de idioma son la misma URL: el idioma se elige en el
-     cliente. x-default apunta aquí para que el buscador no se invente nada. -->
+<meta name="theme-color" content="#F2F2F0">
 <link rel="alternate" hreflang="es" href="https://josemanuelbg.github.io/Portfolio/">
 <link rel="alternate" hreflang="en" href="https://josemanuelbg.github.io/Portfolio/">
 <link rel="alternate" hreflang="x-default" href="https://josemanuelbg.github.io/Portfolio/">
 
-<!-- Vista previa al pegar el enlace. Las rutas TIENEN que ser absolutas:
-     con una ruta relativa ni WhatsApp ni LinkedIn cogen la imagen. -->
+<!-- Vista previa al pegar el enlace. Rutas absolutas o no sale la imagen. -->
 <meta property="og:type" content="profile">
 <meta property="og:locale" content="es_ES">
 <meta property="og:site_name" content="José Manuel Babaciu Gheorghiu">
@@ -36,11 +32,10 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
 
-<!-- Tipografías autoalojadas: sin conexión a Google y sin entregar la IP
-     del visitante a un tercero. Se precargan las dos. -->
+<!-- Tipografías autoalojadas: sin conexión a Google. -->
 <link rel="preload" href="assets/fuentes/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fuentes/jetbrains-mono.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/estilos.css?v=2">
+<link rel="stylesheet" href="assets/estilos.css?v=3">
 <script>document.documentElement.classList.add("js");</script>
 
 <!-- Solo datos REALES. Lo pendiente (CV, dominio) no entra aquí. -->
@@ -54,29 +49,16 @@
   "jobTitle": "Desarrollador full-stack",
   "email": "mailto:josemanuelbabaciugheorghiu@gmail.com",
   "url": "https://josemanuelbg.github.io/Portfolio/",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Sevilla",
-    "addressRegion": "Sevilla",
-    "addressCountry": "ES"
-  },
+  "address": { "@type": "PostalAddress", "addressLocality": "Sevilla", "addressRegion": "Sevilla", "addressCountry": "ES" },
   "knowsAbout": ["JavaScript", "TypeScript", "React", "Next.js", "Node", "Spring Boot", "Java", "Accesibilidad web"],
-  "sameAs": [
-    "https://github.com/JoseManuelbg",
-    "https://www.linkedin.com/in/josemanuelbg05/",
-    "https://codepen.io/JoseManuelbg"
-  ]
+  "sameAs": ["https://github.com/JoseManuelbg", "https://www.linkedin.com/in/josemanuelbg05/", "https://codepen.io/JoseManuelbg"]
 }
 </script>
 </head>
 <body>
 
 <a class="saltar" href="#contenido">Saltar al contenido</a>
-
-<!-- Capas decorativas. Fijas, sin eventos y detrás de todo: son lo que el
-     cristal difumina. Puro CSS, no cuestan una petición. -->
-<div class="fondo" aria-hidden="true"></div>
-<div class="grano" aria-hidden="true"></div>
+<div class="papel-rejilla" aria-hidden="true"></div>
 
 <!-- Cinta de aviso: la gobierna AVISO.visible en datos.js. Apagada. -->
 <div class="aviso-maqueta" data-aviso hidden>
@@ -86,19 +68,15 @@
 
 <header class="cabecera" data-cabecera>
   <div class="cabecera__interior contenedor">
-    <a class="marca" href="#inicio"><span data-nombre-corto>José Manuel</span></a>
-
-    <button class="menu-boton" type="button" data-menu-boton aria-expanded="false" aria-controls="nav">
-      <span class="oculto-visual">Menú</span><span aria-hidden="true">☰</span>
-    </button>
-
+    <a class="marca" href="#inicio">JM<span data-ubicacion>Sevilla, España</span></a>
+    <button class="menu-boton" type="button" data-menu-boton aria-expanded="false" aria-controls="nav">Menú</button>
     <nav class="nav" id="nav" data-nav aria-label="Principal">
       <a href="#trabajos" data-nav-clave="trabajos">Trabajos</a>
       <a href="#servicios" data-nav-clave="servicios" data-solo="negocio">Qué hago</a>
       <a href="#proceso" data-nav-clave="proceso" data-solo="negocio">Cómo trabajo</a>
       <a href="#stack" data-nav-clave="stack" data-solo="tecnico">Stack</a>
       <a href="#contacto" data-nav-clave="contacto">Contacto</a>
-      <button class="boton-idioma" type="button" data-idioma aria-label="Cambiar a inglés">English</button>
+      <button class="boton-idioma" type="button" data-idioma aria-label="Cambiar a inglés">EN</button>
     </nav>
   </div>
 </header>
@@ -107,23 +85,35 @@
 
   <!-- ============ Héroe ============ -->
   <section class="heroe" id="inicio">
-    <!-- La escena es decorativa: si Three.js no carga, queda el degradado
-         del velo sobre las manchas de .fondo y no se pierde nada. -->
-    <div class="escena" aria-hidden="true">
-      <canvas class="escena__lienzo" data-lienzo></canvas>
-      <div class="escena__velo"></div>
-    </div>
+    <div class="contenedor">
+      <div class="heroe__sobre">
+        <span class="etiqueta heroe__linea" data-texto="heroeSobre">Ficha · Desarrollador full-stack</span>
+        <span class="etiqueta heroe__linea" data-experiencia>Programando desde los 15 años.</span>
+      </div>
 
-    <div class="contenedor heroe__interior">
-      <div data-heroe-texto>
-        <p class="seccion__sobre" data-experiencia>Programando desde los 15 años.</p>
-        <h1 class="heroe__titulo" data-heroe-titulo>Hago webs que cargan rápido y aplicaciones que aguantan.</h1>
-        <p class="heroe__entrada" data-heroe-entrada>Desarrollador full-stack en Sevilla. Dime desde dónde llegas y te enseño lo que te interesa.</p>
+      <h1 class="heroe__nombre" aria-label="José Manuel Babaciu Gheorghiu">
+        <span class="heroe__linea" data-nombre-corto>José Manuel</span>
+        <span class="heroe__linea apellidos" data-apellidos>Babaciu Gheorghiu</span>
+      </h1>
+
+      <div class="heroe__cuerpo">
+        <div data-heroe-texto>
+          <p class="heroe__titulo heroe__linea" data-heroe-titulo>Hago webs que cargan rápido y aplicaciones que aguantan.</p>
+          <p class="heroe__entrada heroe__linea" data-heroe-entrada>Desarrollador full-stack en Sevilla. Dime desde dónde llegas y te enseño lo que te interesa.</p>
+        </div>
+
+        <div class="heroe__lado">
+          <!-- Decorativa: si Three.js no carga, la ficha se sostiene sola. -->
+          <div class="escena" aria-hidden="true"><canvas class="escena__lienzo" data-lienzo></canvas></div>
+          <dl class="ficha heroe__linea" data-ficha>
+            <!-- Se pinta desde DATOS.ficha -->
+          </dl>
+        </div>
       </div>
 
       <!-- Las dos mitades de la web: venta y portfolio. -->
-      <div class="selector">
-        <p class="selector__pregunta" data-selector-pregunta>¿Desde dónde llegas?</p>
+      <div class="selector heroe__linea">
+        <p class="etiqueta selector__pregunta" data-selector-pregunta>¿Desde dónde llegas?</p>
         <div class="selector__botones">
           <button class="selector__boton" type="button" data-publico-boton="negocio" aria-pressed="false">
             <span data-selector-texto="negocio">Tengo un negocio</span>
@@ -136,15 +126,14 @@
         </div>
       </div>
 
-      <p class="grupo-botones">
+      <p class="grupo-botones heroe__linea">
         <a class="boton boton--lleno" data-email data-boton="email" href="mailto:josemanuelbabaciugheorghiu@gmail.com">Escríbeme por correo</a>
-        <a class="boton boton--borde" data-boton="verTrabajos" href="#trabajos">Ver trabajos</a>
+        <a class="enlace-flecha" data-boton="verTrabajos" href="#trabajos">Ver trabajos</a>
       </p>
     </div>
   </section>
 
-  <!-- Cinta deslizante: solo hechos de esta misma web. Se pinta desde datos.js
-       y se para con prefers-reduced-motion. -->
+  <!-- Banda amarilla: solo hechos de esta misma web. -->
   <div class="cinta" data-cinta aria-hidden="true"></div>
 
   <noscript>
@@ -159,33 +148,33 @@
   <!-- ============ Trabajos (los dos públicos) ============ -->
   <section class="seccion" id="trabajos">
     <div class="contenedor">
-      <p class="seccion__sobre" data-texto="trabajosSobre">Trabajos</p>
-      <h2 data-texto="trabajosTitulo">Cinco cosas que he hecho y puedes abrir</h2>
-      <div class="rejilla rejilla--2" data-proyectos>
-        <!-- Se pinta desde DATOS.proyectos -->
+      <div class="seccion__cabecera">
+        <p class="seccion__numero revelar"><b>01</b> <span data-texto="trabajosSobre">Trabajos</span> <span data-cuenta-proyectos></span></p>
+        <h2 class="seccion__titulo revelar" data-texto="trabajosTitulo">Cinco cosas que he hecho y puedes abrir</h2>
       </div>
+      <ol class="obras" data-proyectos><!-- Se pinta desde DATOS.proyectos --></ol>
     </div>
   </section>
 
   <!-- ============ Qué hago (venta) ============ -->
   <section class="seccion" id="servicios" data-solo="negocio">
     <div class="contenedor">
-      <p class="seccion__sobre" data-texto="serviciosSobre">Qué hago</p>
-      <h2 data-texto="serviciosTitulo">Lo que puedo hacer por tu negocio</h2>
-      <div class="rejilla rejilla--3" data-servicios>
-        <!-- Se pinta desde DATOS.servicios -->
+      <div class="seccion__cabecera">
+        <p class="seccion__numero revelar"><b>02</b> <span data-texto="serviciosSobre">Qué hago</span></p>
+        <h2 class="seccion__titulo revelar" data-texto="serviciosTitulo">Lo que puedo hacer por tu negocio</h2>
       </div>
+      <div class="columnas" data-servicios><!-- Se pinta desde DATOS.servicios --></div>
     </div>
   </section>
 
   <!-- ============ Cómo trabajo (venta) ============ -->
-  <section class="seccion" id="proceso" data-solo="negocio">
+  <section class="seccion seccion--hundida" id="proceso" data-solo="negocio">
     <div class="contenedor">
-      <p class="seccion__sobre" data-texto="procesoSobre">Cómo trabajo</p>
-      <h2 data-texto="procesoTitulo">Cuatro pasos y sin sorpresas</h2>
-      <ol class="proceso" data-proceso>
-        <!-- Se pinta desde DATOS.proceso -->
-      </ol>
+      <div class="seccion__cabecera">
+        <p class="seccion__numero revelar"><b>03</b> <span data-texto="procesoSobre">Cómo trabajo</span></p>
+        <h2 class="seccion__titulo revelar" data-texto="procesoTitulo">Cuatro pasos y sin sorpresas</h2>
+      </div>
+      <ol class="pasos" data-proceso><!-- Se pinta desde DATOS.proceso --></ol>
       <p class="grupo-botones" style="margin-top:2.5rem">
         <a class="boton boton--lleno" data-email data-boton="presupuesto" href="mailto:josemanuelbabaciugheorghiu@gmail.com">Pedir presupuesto</a>
       </p>
@@ -195,44 +184,36 @@
   <!-- ============ Stack (portfolio) ============ -->
   <section class="seccion" id="stack" data-solo="tecnico">
     <div class="contenedor">
-      <p class="seccion__sobre" data-texto="stackSobre">Stack</p>
-      <h2 data-texto="stackTitulo">Con qué trabajo</h2>
-      <div class="stack" data-stack>
-        <!-- Se pinta desde DATOS.stack -->
+      <div class="seccion__cabecera">
+        <p class="seccion__numero revelar"><b>04</b> <span data-texto="stackSobre">Stack</span></p>
+        <h2 class="seccion__titulo revelar" data-texto="stackTitulo">Con qué trabajo</h2>
       </div>
+      <div class="stack" data-stack><!-- Se pinta desde DATOS.stack --></div>
     </div>
   </section>
 
   <!-- ============ Contacto (los dos públicos) ============ -->
   <section class="seccion" id="contacto">
     <div class="contenedor">
-      <p class="seccion__sobre" data-texto="contactoSobre">Contacto</p>
-      <h2 data-texto="contactoTitulo">Escríbeme</h2>
-
-      <div class="vidrio contacto-panel revelar">
-        <div class="rejilla rejilla--2">
-          <div>
-            <p data-texto="contactoEntrada">El correo es la vía rápida: contesto el mismo día.</p>
-            <p class="grupo-botones">
-              <a class="boton boton--lleno" data-email data-boton="email" href="mailto:josemanuelbabaciugheorghiu@gmail.com">Escríbeme por correo</a>
-              <!-- Se convierte en enlace real cuando exista el PDF. -->
-              <span class="pendiente" data-cv>CV en PDF: pendiente</span>
-            </p>
-            <ul class="contacto">
-              <li><a data-email data-email-texto href="mailto:josemanuelbabaciugheorghiu@gmail.com">josemanuelbabaciugheorghiu@gmail.com</a></li>
-              <li><a data-github href="https://github.com/JoseManuelbg" target="_blank" rel="noopener">GitHub · JoseManuelbg</a></li>
-              <li><a data-linkedin href="https://www.linkedin.com/in/josemanuelbg05/" target="_blank" rel="noopener">LinkedIn</a></li>
-              <li><a data-codepen href="https://codepen.io/JoseManuelbg" target="_blank" rel="noopener">CodePen</a></li>
-            </ul>
-            <p class="contacto__lugar" data-ubicacion>Sevilla, España</p>
-          </div>
-
-          <div class="retrato-marco">
-            <!-- [PENDIENTE: foto decente] Ahora está el avatar de GitHub, que es
-                 una foto de carnet de baja resolución. Cambiar antes de enseñarla. -->
-            <img class="retrato" data-foto src="assets/img/retrato.jpg" width="440" height="440"
-                 alt="Retrato de José Manuel Babaciu Gheorghiu" loading="lazy" decoding="async">
-          </div>
+      <div class="seccion__cabecera">
+        <p class="seccion__numero revelar"><b>05</b> <span data-texto="contactoSobre">Contacto</span></p>
+      </div>
+      <div class="contacto">
+        <div class="revelar">
+          <p class="contacto__grande" data-texto="contactoTitulo">Escríbeme.</p>
+          <a class="contacto__correo" data-email data-email-texto href="mailto:josemanuelbabaciugheorghiu@gmail.com">josemanuelbabaciugheorghiu@gmail.com</a>
+          <p class="heroe__entrada" data-texto="contactoEntrada">El correo es la vía rápida: contesto el mismo día.</p>
+          <ul class="contacto__enlaces">
+            <li><a data-github href="https://github.com/JoseManuelbg" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a data-linkedin href="https://www.linkedin.com/in/josemanuelbg05/" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a data-codepen href="https://codepen.io/JoseManuelbg" target="_blank" rel="noopener">CodePen</a></li>
+            <li><span class="pendiente" data-cv>CV en PDF: pendiente</span></li>
+          </ul>
+          <p class="contacto__lugar" data-ubicacion>Sevilla, España</p>
+        </div>
+        <div class="retrato-marco revelar">
+          <!-- [PENDIENTE: foto decente] Es el avatar de GitHub, una foto de carnet. -->
+          <img class="retrato" data-foto src="assets/img/retrato.jpg" width="440" height="440" alt="Retrato de José Manuel Babaciu Gheorghiu" loading="lazy" decoding="async">
         </div>
       </div>
     </div>
@@ -242,16 +223,15 @@
 
 <footer class="pie">
   <div class="contenedor pie__interior">
-    <p class="pie__legal">© <span data-anio>2026</span> <span data-nombre>José Manuel Babaciu Gheorghiu</span> · <span data-ubicacion>Sevilla, España</span></p>
-    <p class="pie__enlaces"><a href="privacidad.html">Privacidad</a></p>
+    <p>© <span data-anio>2026</span> <span data-nombre>José Manuel Babaciu Gheorghiu</span></p>
+    <p><a href="privacidad.html">Privacidad</a> · <a href="https://github.com/JoseManuelbg/Portfolio" rel="noopener">Código de esta web</a></p>
   </div>
 </footer>
 
-<!-- GSAP autoalojado, nunca por CDN: así la CSP se queda en default-src 'self'.
-     Si estos dos no cargaran, app.js cae solo a IntersectionObserver. -->
-<script src="assets/lib/gsap.min.js?v=2" defer></script>
-<script src="assets/lib/ScrollTrigger.min.js?v=2" defer></script>
-<script src="assets/datos.js?v=2" defer></script>
-<script src="assets/app.js?v=2" defer></script>
+<!-- GSAP autoalojado, nunca por CDN. Si no cargara, app.js cae a IntersectionObserver. -->
+<script src="assets/lib/gsap.min.js?v=3" defer></script>
+<script src="assets/lib/ScrollTrigger.min.js?v=3" defer></script>
+<script src="assets/datos.js?v=3" defer></script>
+<script src="assets/app.js?v=3" defer></script>
 </body>
 </html>

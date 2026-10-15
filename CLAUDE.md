@@ -100,44 +100,41 @@ Cada escalón añade y ninguno es imprescindible. Al tocar `app.js`, mantenlo:
    estrangulado, captura automática) media página se queda invisible. Usa
    `fromTo()`, que escribe el estado final, y deja puesta la red de seguridad
    por `setTimeout` que ya hay en `entradaHeroe()` y en `revelar()`.
-4. **Con Three.js:** cortina de puntos en el héroe. Se importa de forma diferida
+4. **Con Three.js:** un icosaedro de alambre en el héroe. Se importa de forma diferida
    (789 KB entre sus dos ficheros) y **no se carga** con `prefers-reduced-motion`,
    por debajo de 760 px, con ahorro de datos o con menos de 4 núcleos. Si no
    carga, queda el degradado CSS y no se pierde nada.
 
-   La rejilla está en el plano XY, **de frente a la cámara**, no como suelo en
-   perspectiva: así los puntos se reparten por todo el encuadre. Como suelo se
-   aplastaban en una franja y, con niebla, no se veía nada. Ondulan en Z y el
-   tamaño atenúa con la distancia, que es lo que produce el centelleo.
-
-   Encima va `.escena__velo`, dos degradados: el horizontal es el que importa,
-   muy opaco en la mitad izquierda (donde cae el texto) y casi transparente a
-   la derecha. **Es lo que garantiza el contraste del texto pase lo que pase en
-   la escena.** Por debajo de 1000 px vuelve a ser plano y oscuro.
+   Dos icosaedros concéntricos en `LineSegments`: el exterior en tinta muy
+   tenue y el interior en amarillo. Giran despacio y siguen al ratón. Está
+   detrás de la ficha, desplazado arriba y a la derecha para no pisar el
+   texto. Solo se carga por encima de 1000 px, que es cuando la ficha tiene
+   columna propia.
 
 `three.module.min.js` importa `./three.core.min.js`: el import interno está
 parcheado respecto al original de cdnjs, que apunta a `three.core.js`.
 
-### El cristal (glassmorphism)
+### La dirección de diseño: ficha técnica impresa
 
-`.vidrio` es la pieza reutilizable: tinte blanco **muy poco opaco** (0,055),
-borde fino y un brillo superior de un píxel, que es lo que lo hace parecer
-material. Se compone con `.tarjeta`, `.proyecto`, `.paso` y `.stack__grupo`.
+Papel claro, tinta negra y **un solo amarillo, que es superficie y nunca
+texto** (sobre papel no llega a 2:1; con tinta negra encima da 11,5:1). La
+composición la hace la tipografía: el nombre enorme en dos pesos, columnas
+de metadatos en monoespaciada (`.ficha`), secciones numeradas con el título
+grande en la columna derecha, reglas finas y una rejilla de doce columnas al
+fondo (`.papel-rejilla`).
 
-Dos cosas que no se pueden tocar a la ligera:
+Lo que **no** hay, a propósito, porque es la plantilla por defecto de
+cualquier generador y era lo que había antes: fondo oscuro, tarjetas de
+cristal, resplandores, manchas de color, partículas. Si alguien pide "más
+vistoso", la respuesta es más idea tipográfica, no más efectos.
 
-- **La opacidad del tinte decide el contraste.** Sobre `--papel` el fondo
-  compuesto queda en `#1B1B1B` y el texto cumple AAA. Si subes el 0,055, hay
-  que volver a medir todos los pares.
-- **`backdrop-filter` es caro.** Solo lo llevan la cabecera, las tarjetas del
-  selector y el panel de contacto. El resto es un `rgba` con borde, que sobre
-  un fondo casi plano se ve igual y no cuesta nada. No lo extiendas a las
-  tarjetas de proyecto.
-
-Detrás de todo hay dos capas fijas y sin eventos: `.fondo` (tres manchas
-radiales amarillas, que son lo que el cristal difumina) y `.grano` (ruido en
-`data:` URI con `mix-blend-mode: overlay`, que mata el bandeado de los
-degradados). La CSP permite el `data:` por `img-src`.
+Los trabajos son **una lista editorial** (`.obras`), no una rejilla de
+tarjetas: filas con índice, nombre grande, tipo, stack y flecha. Con puntero
+fino la fila se vuelve amarilla y la portada del proyecto sigue al cursor
+(`.obra-vista`, movida con `gsap.quickTo`). Sin puntero fino o por debajo de
+860 px la portada va dentro de la fila (`.obra__media`). Las cuatro portadas
+de `assets/fotos/portada-*.jpg` son **generadas, no capturas**, y su `alt` lo
+dice; se cambian por capturas reales cuando existan.
 
 ### CSS
 

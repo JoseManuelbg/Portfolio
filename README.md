@@ -29,10 +29,12 @@ docs/                 Brief del proyecto. Solo en local: está en .gitignore
 
 ## Acabado
 
-Acabado de cristal: paneles translúcidos con borde fino sobre un fondo de
-manchas amarillas y grano. El héroe lleva una cortina de puntos en Three.js
-que se carga **después** de la primera pintura y se apaga sola con movimiento
-reducido, en pantalla estrecha o con ahorro de datos.
+Ficha técnica impresa: papel claro, tinta negra y un solo amarillo. El nombre
+enorme, metadatos en monoespaciada, secciones numeradas y los trabajos como
+lista editorial con la portada siguiendo al cursor. El héroe lleva un
+icosaedro de alambre en Three.js que se carga **después** de la primera
+pintura y se apaga solo con movimiento reducido, en pantalla estrecha o con
+ahorro de datos.
 
 | Qué | Peso |
 |---|---|
