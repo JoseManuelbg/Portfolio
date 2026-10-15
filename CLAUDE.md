@@ -38,6 +38,11 @@ el alcance.
 - **Todo el contenido vive en `assets/datos.js`.** Es el único fichero que se
   toca para cambiar textos, proyectos o contacto. No metas contenido en el
   HTML ni en el CSS.
+- **No borres `.nojekyll`.** Sin él, GitHub Pages pasa el repositorio por
+  Jekyll, que renderiza todos los `.md` con Liquid y aborta el despliegue
+  entero con cualquier `{{` que encuentre. Ya pasó: el `grep "{{"` de la
+  sección de comandos de este mismo archivo tumbó el primer build. Con
+  `.nojekyll`, Pages sirve los ficheros tal cual, que es lo que queremos.
 - **Al tocar `estilos.css` o `app.js`, sube el `?v=N` de todos los HTML.** Si
   no, el navegador sirve la versión vieja y parece que el cambio no hizo nada.
   `sed -i 's/?v=1/?v=2/g' *.html`

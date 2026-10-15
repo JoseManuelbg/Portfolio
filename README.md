@@ -58,7 +58,9 @@ Para verla entera, levanta el servidor.
 
 ## Desplegar
 
-GitHub Pages sirve la rama `main` desde la raíz. Desplegar es hacer push:
+GitHub Pages sirve la rama `main` desde la raíz. Desplegar es hacer push.
+El `.nojekyll` de la raíz es obligatorio: sin él Pages pasa el repo por
+Jekyll, que intenta renderizar los `.md` y revienta con cualquier `{{`.
 
 ```
 git push origin main
