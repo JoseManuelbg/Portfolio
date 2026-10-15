@@ -1,0 +1,7 @@
+# Web personal y real: abierta a los buscadores a propósito.
+# [PENDIENTE: dominio propio] Al comprarlo, actualizar la URL del sitemap
+# aquí y las URL absolutas de index.html y sitemap.xml.
+User-agent: *
+Allow: /
+
+Sitemap: https://josemanuelbg.github.io/Portfolio/sitemap.xml

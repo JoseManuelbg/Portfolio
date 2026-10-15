@@ -1,0 +1,14 @@
+# Se normaliza todo a LF dentro del repositorio.
+# Sin esto, en Windows cada archivo entra con CRLF y el primer diff que haga
+# otra persona sale entero en rojo aunque no haya cambiado nada.
+* text=auto eol=lf
+
+# Binarios: que git no los toque.
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.webp  binary
+*.ico   binary
+*.woff  binary
+*.woff2 binary
+*.pdf   binary

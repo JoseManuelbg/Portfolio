@@ -1,0 +1,523 @@
+/* ==========================================================================
+   Portfolio de José Manuel — hoja de estilos
+   --------------------------------------------------------------------------
+   Paleta del brief: negro, blanco y amarillo, con acabado de cristal
+   (glassmorphism). Ni el negro ni el blanco son puros: el negro puro sobre
+   OLED vibra y el blanco puro cansa en un texto largo.
+
+   EL CRISTAL Y EL CONTRASTE
+   Un panel translúcido cambia el color de fondo real bajo el texto, así que
+   aquí el cristal está acotado a propósito: el tinte es claro pero MUY poco
+   opaco (0,055), de forma que sobre --papel el fondo compuesto se queda en
+   #1B1B1B y el texto sigue cumpliendo de sobra. Donde hay escena 3D detrás
+   se pone un velo oscuro (.escena__velo) para que el compuesto no suba.
+   Si subes la opacidad del cristal, vuelve a medir los contrastes.
+
+   Contraste medido (texto AA 4.5:1; bordes de control AA 3:1):
+     --tinta        sobre --papel          17.22:1  AAA
+     --tinta        sobre cristal (#1B1B1B) 15.37:1 AAA
+     --tinta-media  sobre --papel           8.08:1  AAA
+     --tinta-media  sobre cristal (#1B1B1B)  7.21:1 AAA
+     --acento       sobre --papel          11.48:1  AAA
+     --papel        sobre --acento         11.48:1  AAA (botón amarillo)
+     --linea-control sobre --papel          3.55:1  AA de componente
+     --linea es decorativa (1,42:1): separadores, nunca el borde de un control.
+
+   RENDIMIENTO
+   `backdrop-filter` es caro. Solo lo llevan la cabecera, las tarjetas del
+   selector y el panel de contacto. El resto de "cristal" es un rgba con
+   borde, que sobre un fondo casi plano se ve igual y no cuesta nada.
+
+   Índice
+   00 · Tipografías
+   01 · Variables
+   02 · Base
+   03 · Fondo decorativo y grano
+   04 · Cabecera flotante
+   05 · Botones
+   06 · Héroe y escena 3D
+   07 · Selector de público
+   07b · Cinta deslizante
+   08 · Secciones y cristal
+   09 · Proyectos
+   10 · Qué hago, proceso y stack
+   11 · Contacto y retrato
+   12 · Pie
+   13 · Cinta de aviso y sin JavaScript
+   14 · Marcadores: pendiente y foto
+   15 · Aparición al hacer scroll
+   16 · Páginas de texto (legal, 404, gracias)
+   17 · Accesibilidad
+   ========================================================================== */
+
+/* ---- 00 · Tipografías ----------------------------------------------------
+   Autoalojadas, no por CDN: RGPD (no se entrega la IP del visitante a
+   Google), velocidad (sin DNS ni TLS a otro dominio) y no depender de nadie. */
+@import url("fuentes/fuentes.css");
+
+/* ---- 01 · Variables ------------------------------------------------------ */
+:root {
+  --papel: #0E0E0E;
+  --papel-hundido: #121212;
+  --tinta: #F2F2F0;
+  --tinta-media: #A8A8A2;
+  --acento: #F2C200;
+  --acento-claro: #FFD629;
+  --sobre-acento: #0E0E0E;
+
+  /* Separador decorativo. No vale como borde de algo que se pulsa. */
+  --linea: #2E2E2B;
+  /* Borde de controles: 3:1 sobre los tres fondos (WCAG 1.4.11). */
+  --linea-control: #6A6A65;
+
+  /* Cristal. Ver la nota de contraste de la cabecera antes de tocarlo. */
+  --vidrio: rgb(255 255 255 / 0.055);
+  --vidrio-alto: rgb(255 255 255 / 0.085);
+  --vidrio-borde: rgb(255 255 255 / 0.12);
+  --vidrio-borde-alto: rgb(255 255 255 / 0.2);
+  --sombra: 0 10px 34px rgb(0 0 0 / 0.45);
+  --sombra-alta: 0 18px 50px rgb(0 0 0 / 0.55);
+  --desenfoque: blur(16px) saturate(150%);
+
+  --sans: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
+
+  /* Escala fluida: móvil a escritorio sin una media query por título. */
+  --t-1: clamp(0.78rem, 0.74rem + 0.18vw, 0.86rem);
+  --t0:  clamp(1rem, 0.96rem + 0.28vw, 1.1rem);
+  --t1:  clamp(1.2rem, 1.06rem + 0.66vw, 1.5rem);
+  --t2:  clamp(1.65rem, 1.35rem + 1.5vw, 2.4rem);
+  --t3:  clamp(2.2rem, 1.55rem + 3.2vw, 4.2rem);
+
+  --ancho: 1140px;
+  --radio: 14px;
+  --radio-s: 8px;
+  --e1: 0.5rem; --e2: 1rem; --e3: 1.5rem; --e4: 2.5rem; --e5: 4rem; --e6: 6rem;
+}
+
+/* ---- 02 · Base ------------------------------------------------------------ */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--sans);
+  font-size: var(--t0);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { max-width: 100%; height: auto; display: block; }
+h1, h2, h3 { font-family: var(--sans); font-weight: 600; line-height: 1.1; letter-spacing: -0.025em; margin: 0 0 var(--e2); }
+h1 { font-size: var(--t3); }
+h2 { font-size: var(--t2); margin-bottom: var(--e3); }
+h3 { font-size: var(--t1); }
+p { margin: 0 0 var(--e2); max-width: 62ch; }
+a { color: var(--acento); }
+a:hover { color: var(--acento-claro); }
+ul, ol { margin: 0; padding: 0; }
+
+.contenedor { width: min(100% - 2 * var(--e3), var(--ancho)); margin-inline: auto; }
+.contenedor--texto { max-width: 720px; }
+
+/* Etiqueta de sección numerada: es lo que le da el aire técnico. */
+.seccion__sobre {
+  display: flex; align-items: center; gap: 0.7em;
+  font-family: var(--mono); font-size: var(--t-1);
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--acento); margin-bottom: var(--e2);
+}
+.seccion__sobre::after {
+  content: ""; flex: 1; height: 1px; max-width: 120px;
+  background: linear-gradient(90deg, var(--acento), transparent);
+}
+
+/* ---- 03 · Fondo decorativo y grano ----------------------------------------
+   Dos manchas de color fijas detrás de todo: son las que hacen que el
+   cristal tenga algo que difuminar. Muy tenues a propósito. ---------------- */
+.fondo {
+  position: fixed; inset: 0; z-index: -2; pointer-events: none;
+  background:
+    radial-gradient(44vw 44vw at 82% 6%,  rgb(242 194 0 / 0.14), transparent 62%),
+    radial-gradient(38vw 38vw at 10% 32%, rgb(242 194 0 / 0.055), transparent 64%),
+    radial-gradient(50vw 40vw at 50% 108%, rgb(242 194 0 / 0.07), transparent 60%);
+}
+/* Grano: mata el bandeado de los degradados y da textura de material.
+   Va en data: URI, que la CSP permite en img-src. */
+.grano {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: 0.4;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='r'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23r)' opacity='0.5'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+/* ---- 04 · Cabecera flotante ------------------------------------------------ */
+.cabecera { position: sticky; top: 0; z-index: 50; padding-top: var(--e2); }
+.cabecera__interior {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--e2); min-height: 60px; padding: 8px 10px 8px var(--e3);
+  border-radius: 999px;
+  background: var(--vidrio);
+  border: 1px solid transparent;
+  transition: background-color .3s, border-color .3s, box-shadow .3s;
+}
+/* El cristal solo se "enciende" al bajar: arriba del todo estorba. */
+.cabecera--posada .cabecera__interior {
+  background: rgb(14 14 14 / 0.72);
+  backdrop-filter: var(--desenfoque);
+  -webkit-backdrop-filter: var(--desenfoque);
+  border-color: var(--vidrio-borde);
+  box-shadow: var(--sombra);
+}
+.marca { font-weight: 600; font-size: var(--t1); color: var(--tinta); text-decoration: none; letter-spacing: -0.03em; white-space: nowrap; }
+.marca:hover { color: var(--acento); }
+.nav { display: flex; align-items: center; gap: var(--e3); }
+.nav a {
+  position: relative; color: var(--tinta); text-decoration: none;
+  font-size: 0.93rem; padding: 6px 0;
+}
+.nav a::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+  background: var(--acento); border-radius: 2px;
+  transform: scaleX(0); transform-origin: left; transition: transform .25s ease;
+}
+.nav a:hover { color: var(--acento); }
+.nav a:hover::after { transform: scaleX(1); }
+
+.boton-idioma {
+  font-family: var(--mono); font-size: var(--t-1); letter-spacing: 0.06em;
+  background: var(--vidrio); color: var(--tinta);
+  border: 1px solid var(--linea-control); border-radius: 999px;
+  padding: 9px 16px; min-height: 42px; cursor: pointer;
+  transition: color .2s, border-color .2s, background-color .2s;
+}
+.boton-idioma:hover { color: var(--acento); border-color: var(--acento); background: var(--vidrio-alto); }
+
+.menu-boton {
+  display: none; background: var(--vidrio); color: var(--tinta);
+  border: 1px solid var(--linea-control); border-radius: 999px;
+  font-size: 1.2rem; padding: 0 0.75em; min-height: 44px; min-width: 48px; cursor: pointer;
+}
+@media (max-width: 880px) {
+  .menu-boton { display: inline-flex; align-items: center; justify-content: center; }
+  .cabecera__interior { border-radius: var(--radio); }
+  .nav {
+    display: none; position: absolute; inset-inline: 0; top: calc(100% + 8px);
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: rgb(14 14 14 / 0.94);
+    backdrop-filter: var(--desenfoque);
+    -webkit-backdrop-filter: var(--desenfoque);
+    border: 1px solid var(--vidrio-borde); border-radius: var(--radio);
+    box-shadow: var(--sombra-alta); padding: var(--e2) var(--e3);
+  }
+  .nav--desplegado { display: flex; }
+  .nav a { padding: var(--e2) 0; border-bottom: 1px solid var(--linea); }
+  .nav a:last-of-type { border-bottom: 0; }
+  .boton-idioma { margin-top: var(--e2); align-self: flex-start; }
+}
+
+/* ---- 05 · Botones ---------------------------------------------------------- */
+.boton {
+  position: relative; overflow: hidden;
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5em;
+  min-height: 50px; padding: 0.8em 1.6em; border-radius: 999px;
+  font-family: var(--sans); font-size: 0.96rem; font-weight: 600;
+  text-decoration: none; border: 1px solid transparent; cursor: pointer;
+  transition: transform .18s ease, background-color .2s, color .2s, border-color .2s, box-shadow .2s;
+}
+.boton:hover { transform: translateY(-2px); }
+.boton:active { transform: translateY(0); }
+.boton--lleno { background: var(--acento); color: var(--sobre-acento); box-shadow: 0 6px 20px rgb(242 194 0 / 0.22); }
+.boton--lleno:hover { background: var(--acento-claro); color: var(--sobre-acento); box-shadow: 0 10px 28px rgb(242 194 0 / 0.3); }
+.boton--borde { border-color: var(--linea-control); color: var(--tinta); background: var(--vidrio); }
+.boton--borde:hover { border-color: var(--acento); color: var(--acento); background: var(--vidrio-alto); }
+/* Destello que cruza el botón al pasar por encima. Puro CSS. */
+.boton--lleno::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(105deg, transparent 38%, rgb(255 255 255 / 0.45) 50%, transparent 62%);
+  transform: translateX(-120%);
+}
+.boton--lleno:hover::after { transition: transform .7s ease; transform: translateX(120%); }
+.grupo-botones { display: flex; flex-wrap: wrap; align-items: center; gap: var(--e2); }
+
+/* ---- 06 · Héroe y escena 3D ------------------------------------------------
+   El lienzo es decorativo. Si Three.js no carga (o no debe cargar), quedan
+   las manchas de .fondo, que ya sostienen la sección. --------------------- */
+.heroe { position: relative; padding-block: clamp(4rem, 11vh, 7rem) var(--e5); }
+.escena { position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.escena__lienzo { width: 100%; height: 100%; display: block; opacity: 0; transition: opacity 1.4s ease; }
+.escena__lienzo--activo { opacity: 1; }
+/* Velo: garantiza el contraste del texto pase lo que pase en la escena.
+   Son dos capas. La horizontal es la que importa: muy opaca en la mitad
+   izquierda, que es donde cae el texto, y casi transparente a la derecha,
+   para que la escena se vea en el hueco. La vertical solo funde el final
+   del héroe con el fondo de la página. */
+.escena__velo {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(90deg, rgb(14 14 14 / 0.88) 0%, rgb(14 14 14 / 0.78) 34%, rgb(14 14 14 / 0.3) 72%, rgb(14 14 14 / 0.12) 100%),
+    linear-gradient(180deg, rgb(14 14 14 / 0.22) 0%, rgb(14 14 14 / 0.1) 55%, var(--papel) 100%);
+}
+/* En estrecho el texto ocupa todo el ancho, así que el velo vuelve a ser
+   plano y oscuro. (A menos de 760 px la escena ni se carga.) */
+@media (max-width: 1000px) {
+  .escena__velo {
+    background: linear-gradient(180deg, rgb(14 14 14 / 0.72) 0%, rgb(14 14 14 / 0.78) 55%, var(--papel) 100%);
+  }
+}
+.heroe__interior { position: relative; }
+.heroe__titulo { max-width: 17ch; margin-bottom: var(--e3); text-wrap: balance; }
+.heroe__entrada { font-size: var(--t1); color: var(--tinta-media); max-width: 50ch; }
+
+/* ---- 07 · Selector de público ----------------------------------------------
+   Decisión del brief: el visitante dice desde dónde llega y la página se
+   reordena. Por defecto no hay ninguno activo y se ve todo, que es lo
+   correcto para quien cae aquí desde un buscador. ------------------------- */
+.selector { margin-block: var(--e4) var(--e3); max-width: 680px; }
+.selector__pregunta {
+  font-family: var(--mono); font-size: var(--t-1); letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--tinta-media); margin-bottom: var(--e2);
+}
+.selector__botones { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: var(--e2); }
+.selector__boton {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 4px;
+  text-align: left; font-family: var(--sans); font-size: 1rem; font-weight: 600;
+  color: var(--tinta); cursor: pointer;
+  padding: 16px 20px; min-height: 64px;
+  border-radius: var(--radio); border: 1px solid var(--linea-control);
+  background: var(--vidrio);
+  backdrop-filter: var(--desenfoque); -webkit-backdrop-filter: var(--desenfoque);
+  transition: transform .2s ease, border-color .2s, background-color .2s, box-shadow .2s;
+}
+.selector__boton:hover { transform: translateY(-3px); border-color: var(--acento); background: var(--vidrio-alto); box-shadow: var(--sombra); }
+.selector__pista { font-family: var(--mono); font-size: var(--t-1); font-weight: 400; color: var(--tinta-media); letter-spacing: 0.02em; }
+/* Doble señal: fondo amarillo Y aria-pressed. Nunca solo el color. */
+.selector__boton--activo {
+  background: var(--acento); color: var(--sobre-acento); border-color: var(--acento);
+  box-shadow: 0 8px 26px rgb(242 194 0 / 0.26);
+}
+.selector__boton--activo .selector__pista { color: rgb(14 14 14 / 0.72); }
+.selector__boton--activo:hover { background: var(--acento-claro); color: var(--sobre-acento); }
+
+/* ---- 07b · Cinta deslizante -------------------------------------------------
+   Dos listas idénticas una detrás de otra, las dos desplazándose un 100%:
+   así el bucle no tiene costura. Solo lleva hechos de esta misma web.
+   Decorativa, con aria-hidden en el HTML, así que no se lee dos veces. ---- */
+.cinta {
+  position: relative; display: flex; overflow: hidden;
+  border-block: 1px solid var(--linea);
+  background: rgb(255 255 255 / 0.02);
+  padding-block: 14px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+}
+.cinta__fila {
+  display: flex; align-items: center; gap: var(--e4);
+  list-style: none; padding-right: var(--e4); flex: 0 0 auto;
+  animation: cinta-correr 42s linear infinite;
+}
+.cinta__fila li {
+  display: flex; align-items: center; gap: var(--e4);
+  font-family: var(--mono); font-size: var(--t-1);
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--tinta-media); white-space: nowrap;
+}
+.cinta__fila li::after { content: "✦"; color: var(--acento); }
+@keyframes cinta-correr { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+.cinta:hover .cinta__fila { animation-play-state: paused; }
+
+/* ---- 08 · Secciones y cristal ----------------------------------------------
+   .vidrio es la pieza reutilizable: tinte claro muy poco opaco, borde fino
+   y un brillo superior de un píxel que es lo que lo hace parecer material. */
+.seccion { position: relative; padding-block: var(--e5); }
+.vidrio {
+  position: relative;
+  background: var(--vidrio);
+  border: 1px solid var(--vidrio-borde);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+}
+.vidrio::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.07), transparent 42%);
+}
+.rejilla { display: grid; gap: var(--e3); }
+.rejilla--2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr)); }
+.rejilla--3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr)); }
+
+.tarjeta { padding: var(--e3); transition: transform .25s ease, border-color .25s, box-shadow .25s; }
+.tarjeta:hover { transform: translateY(-4px); border-color: var(--vidrio-borde-alto); box-shadow: var(--sombra-alta); }
+.tarjeta__titulo { margin-bottom: var(--e1); }
+.tarjeta p { color: var(--tinta-media); margin-bottom: 0; }
+
+/* ---- 09 · Proyectos -------------------------------------------------------- */
+.proyecto {
+  display: flex; flex-direction: column; gap: var(--e2);
+  padding: var(--e2) var(--e2) var(--e3);
+  transition: transform .25s ease, border-color .25s, box-shadow .25s;
+}
+.proyecto:hover { transform: translateY(-4px); border-color: var(--vidrio-borde-alto); box-shadow: var(--sombra-alta); }
+.proyecto__medio { position: relative; overflow: hidden; border-radius: var(--radio-s); }
+.proyecto__imagen {
+  width: 100%; aspect-ratio: 1244 / 705; object-fit: cover;
+  background: var(--papel-hundido);
+  transition: transform .5s ease;
+}
+.proyecto:hover .proyecto__imagen { transform: scale(1.035); }
+.proyecto .marcador-foto { aspect-ratio: 1244 / 705; border-radius: var(--radio-s); }
+.proyecto__cuerpo { display: flex; flex-direction: column; gap: var(--e2); flex: 1; padding-inline: var(--e1); }
+.proyecto__cabecera { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--e1) var(--e2); }
+.proyecto__nombre { margin: 0; }
+.proyecto__tipo {
+  font-family: var(--mono); font-size: var(--t-1); letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--acento); margin: 0;
+}
+.proyecto__resumen { color: var(--tinta-media); margin: 0; }
+.proyecto .grupo-botones { margin-top: auto; padding-top: var(--e1); }
+
+.etiquetas { display: flex; flex-wrap: wrap; gap: var(--e1); list-style: none; }
+.etiqueta {
+  font-family: var(--mono); font-size: 0.73rem; letter-spacing: 0.03em;
+  color: var(--tinta-media); background: rgb(255 255 255 / 0.04);
+  border: 1px solid var(--linea); border-radius: 999px; padding: 4px 11px;
+}
+.metricas { list-style: none; display: flex; flex-wrap: wrap; gap: var(--e1) var(--e3); }
+.metricas li {
+  font-family: var(--mono); font-size: var(--t-1); color: var(--tinta);
+  display: flex; align-items: center; gap: 0.45em;
+}
+.metricas li::before { content: "▸"; color: var(--acento); }
+
+/* ---- 10 · Qué hago, proceso y stack ---------------------------------------- */
+.proceso {
+  list-style: none; display: grid; gap: var(--e3);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+}
+.paso { padding: var(--e3); }
+.paso__numero {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 38px; height: 38px; border-radius: 50%;
+  font-family: var(--mono); font-size: 0.8rem; font-weight: 700;
+  color: var(--acento); border: 1px solid var(--acento);
+  background: rgb(242 194 0 / 0.1); margin-bottom: var(--e2);
+}
+.paso__titulo { margin-bottom: var(--e1); font-size: var(--t1); }
+.paso p { color: var(--tinta-media); margin: 0; }
+
+.stack { display: grid; gap: var(--e2); }
+.stack__grupo {
+  display: grid; gap: var(--e2);
+  grid-template-columns: minmax(150px, 210px) 1fr;
+  align-items: center; padding: var(--e3);
+}
+.stack__titulo {
+  font-family: var(--mono); font-size: var(--t-1); letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--acento); margin: 0;
+}
+@media (max-width: 620px) { .stack__grupo { grid-template-columns: 1fr; gap: var(--e2); } }
+
+/* ---- 11 · Contacto y retrato ------------------------------------------------ */
+.contacto-panel {
+  padding: var(--e4);
+  backdrop-filter: var(--desenfoque); -webkit-backdrop-filter: var(--desenfoque);
+}
+.contacto-panel .rejilla { align-items: center; }
+.contacto { list-style: none; }
+.contacto li { padding: var(--e2) 0; border-bottom: 1px solid var(--linea); }
+.contacto li:last-child { border-bottom: 0; }
+.contacto a { text-decoration: none; display: inline-flex; align-items: center; gap: 0.6em; }
+.contacto a:hover { text-decoration: underline; }
+.contacto__lugar { font-family: var(--mono); font-size: var(--t-1); color: var(--tinta-media); margin-top: var(--e2); }
+.retrato-marco { position: relative; width: 100%; max-width: 340px; margin-inline: auto; }
+.retrato {
+  width: 100%; aspect-ratio: 1; object-fit: cover;
+  border-radius: var(--radio); border: 1px solid var(--vidrio-borde);
+  filter: grayscale(1) contrast(1.06);
+  transition: filter .4s ease;
+}
+.retrato-marco:hover .retrato { filter: grayscale(0); }
+
+/* ---- 12 · Pie ---------------------------------------------------------------- */
+.pie { border-top: 1px solid var(--linea); padding-block: var(--e4); font-size: var(--t-1); color: var(--tinta-media); }
+.pie__interior { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--e2); }
+.pie p { margin: 0; max-width: none; }
+
+/* ---- 13 · Cinta de aviso y sin JavaScript ------------------------------------ */
+.aviso-maqueta {
+  position: fixed; inset-inline: 0; bottom: 0; z-index: 60;
+  background: var(--acento); color: var(--sobre-acento);
+  font-size: 0.82rem; padding: 9px 44px 9px 16px; text-align: center;
+}
+.aviso-maqueta button {
+  position: absolute; right: 8px; top: 50%; translate: 0 -50%;
+  border: 0; background: transparent; color: inherit;
+  font-size: 1.1rem; cursor: pointer; padding: 6px 10px; min-width: 44px; min-height: 36px;
+}
+.aviso-sinjs {
+  border: 1px solid var(--acento); border-radius: var(--radio);
+  background: rgb(242 194 0 / 0.07);
+  padding: var(--e2) var(--e3); margin-block: var(--e3);
+}
+.aviso-sinjs p { max-width: none; margin: 0; }
+
+/* ---- 14 · Marcadores: pendiente y foto ---------------------------------------
+   Deliberadamente visibles: así no se publica sin querer con huecos. ------- */
+.pendiente {
+  display: inline-block;
+  padding: 0.4em 0.85em; border: 1px dashed var(--acento); border-radius: 999px;
+  background: rgb(242 194 0 / 0.12);
+  color: var(--acento); font-family: var(--mono); font-weight: 600; font-size: 0.8rem;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}
+.marcador-foto {
+  display: grid; place-items: center; text-align: center;
+  background:
+    repeating-linear-gradient(45deg, rgb(255 255 255 / 0.03) 0 12px, transparent 12px 24px),
+    var(--papel-hundido);
+  border: 1px dashed var(--linea-control); border-radius: var(--radio-s); color: var(--tinta-media);
+  aspect-ratio: 3 / 2; max-width: 100%;
+}
+.marcador-foto--alto { aspect-ratio: 4 / 5; }
+.marcador-foto--apaisado { aspect-ratio: 3 / 2; }
+.marcador-foto__etiqueta { font-weight: 700; margin: 0; color: var(--tinta); }
+.marcador-foto__medida { font-family: var(--mono); font-size: var(--t-1); margin: 0; }
+
+/* ---- 15 · Aparición al hacer scroll -------------------------------------------
+   Sin JS, visible. Solo con JS y sin movimiento reducido arranca invisible.
+   Con GSAP (html.gsap) se quita la transición del CSS: si no, la animación
+   por fotogramas de GSAP pelea con ella y se ve a tirones. ----------------- */
+.revelar { opacity: 1; }
+@media (prefers-reduced-motion: no-preference) {
+  .js .revelar { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  .js .revelar--visible { opacity: 1; transform: none; }
+  .js.gsap .revelar { transition: none; }
+}
+
+/* ---- 16 · Páginas de texto (legal, 404, gracias) ------------------------------ */
+.pagina-texto { max-width: 720px; margin-inline: auto; padding-block: var(--e5); }
+.pagina-texto h2 { font-size: var(--t1); margin-top: 2em; }
+.pagina-texto--centro { text-align: center; }
+.pagina-texto--centro p { margin-inline: auto; }
+.pagina-texto ul { padding-left: 1.2em; }
+.pagina-texto li { margin-bottom: var(--e1); }
+
+/* ---- 17 · Accesibilidad -------------------------------------------------------- */
+:focus-visible { outline: 3px solid var(--acento); outline-offset: 3px; border-radius: 4px; }
+.saltar { position: absolute; left: -999px; top: 0; background: var(--acento); color: var(--sobre-acento); padding: var(--e1) var(--e2); z-index: 100; border-radius: 0 0 var(--radio-s) 0; }
+.saltar:focus { left: 0; }
+.oculto-visual { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+[hidden] { display: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  .boton:hover, .tarjeta:hover, .proyecto:hover, .selector__boton:hover { transform: none; }
+  /* Sin esto, la regla global de duración 0.01ms deja la cinta congelada al
+     final del recorrido, es decir, fuera de la pantalla. */
+  .cinta__fila { animation: none; }
+  .cinta__fila[aria-hidden="true"] { display: none; }
+  .cinta { overflow-x: auto; }
+  .proyecto:hover .proyecto__imagen { transform: none; }
+  .retrato { filter: grayscale(0); }
+  .grano { display: none; }
+}

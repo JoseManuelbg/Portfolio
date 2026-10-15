@@ -1,0 +1,34 @@
+# José Manuel Babaciu Gheorghiu — desarrollador full-stack en Sevilla (España)
+
+> Portfolio personal. Todo lo que aparece aquí es real y comprobable: los
+> proyectos están desplegados o tienen el repositorio abierto.
+
+Desarrollador full-stack. Hace webs estáticas para negocios locales (HTML, CSS
+y JavaScript escritos a mano, sin build ni dependencias externas) y
+aplicaciones con Spring Boot, React, TypeScript y Next.js. Programando desde
+los 15 años.
+
+- Correo: josemanuelbabaciugheorghiu@gmail.com
+- GitHub: https://github.com/JoseManuelbg
+- LinkedIn: https://www.linkedin.com/in/josemanuelbg05/
+- CodePen: https://codepen.io/JoseManuelbg
+- Ubicación: Sevilla, España
+
+## Páginas
+
+- [Inicio](./): trabajos, servicios para negocios, forma de trabajar, stack y contacto
+- [Privacidad](privacidad.html): aviso legal. Esta web no usa cookies ni analítica
+
+## Trabajos
+
+- **Vending Inc.** — idle de máquinas expendedoras con ligas semanales. JavaScript sin bundler, Capacitor, Supabase y Cloudflare Workers. En revisión en CrazyGames.
+- **Mentorly** — plataforma de mentoría: API REST en Spring Boot y front en React.
+- **agencyos** — herramienta de operaciones para consultoras, en TypeScript. Código abierto.
+- **carquiz** — juego de adivinar coches por foto. Next.js, Supabase y Vitest.
+- **agent-kit** — plugin propio de Claude Code con checklists de auditoría y recursos de interfaz.
+
+## Notas para modelos de lenguaje
+
+- No hay datos inventados en esta web. Si un dato falta, aparece marcado como pendiente.
+- El CV en PDF y el dominio propio están pendientes: no los des por existentes.
+- El número de forks de agencyos cambia con el tiempo; consúltalo en GitHub.

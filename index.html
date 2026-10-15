@@ -1,271 +1,257 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jose Manuel — Diseño Web</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>José Manuel Babaciu Gheorghiu · Desarrollador full-stack en Sevilla</title>
+<meta name="description" content="Desarrollador full-stack en Sevilla. Webs para negocios que cargan rápido y aplicaciones con Spring Boot, React y TypeScript. Cinco proyectos abiertos que puedes revisar.">
+<!-- Web propia y real: sin noindex y con robots.txt en Allow. -->
+<!-- [PENDIENTE: dominio propio] Al comprarlo hay que cambiar canonical, og:url,
+     sitemap.xml, robots.txt y el JSON-LD de abajo. Mientras tanto, GitHub Pages bajo /Portfolio/. -->
+<link rel="canonical" href="https://josemanuelbg.github.io/Portfolio/">
+<meta name="theme-color" content="#0E0E0E">
+
+<!-- Las dos versiones de idioma son la misma URL: el idioma se elige en el
+     cliente. x-default apunta aquí para que el buscador no se invente nada. -->
+<link rel="alternate" hreflang="es" href="https://josemanuelbg.github.io/Portfolio/">
+<link rel="alternate" hreflang="en" href="https://josemanuelbg.github.io/Portfolio/">
+<link rel="alternate" hreflang="x-default" href="https://josemanuelbg.github.io/Portfolio/">
+
+<!-- Vista previa al pegar el enlace. Las rutas TIENEN que ser absolutas:
+     con una ruta relativa ni WhatsApp ni LinkedIn cogen la imagen. -->
+<meta property="og:type" content="profile">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="José Manuel Babaciu Gheorghiu">
+<meta property="og:title" content="José Manuel Babaciu Gheorghiu · Desarrollador full-stack">
+<meta property="og:description" content="Webs para negocios que cargan rápido y aplicaciones con Spring Boot, React y TypeScript. Cinco proyectos abiertos que puedes revisar.">
+<meta property="og:url" content="https://josemanuelbg.github.io/Portfolio/">
+<meta property="og:image" content="https://josemanuelbg.github.io/Portfolio/assets/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="José Manuel Babaciu Gheorghiu, desarrollador full-stack en Sevilla">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+
+<!-- Tipografías autoalojadas: sin conexión a Google y sin entregar la IP
+     del visitante a un tercero. Se precargan las dos. -->
+<link rel="preload" href="assets/fuentes/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fuentes/jetbrains-mono.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/estilos.css?v=2">
+<script>document.documentElement.classList.add("js");</script>
+
+<!-- Solo datos REALES. Lo pendiente (CV, dominio) no entra aquí. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://josemanuelbg.github.io/Portfolio/#persona",
+  "name": "José Manuel Babaciu Gheorghiu",
+  "alternateName": "JoseManuelbg",
+  "jobTitle": "Desarrollador full-stack",
+  "email": "mailto:josemanuelbabaciugheorghiu@gmail.com",
+  "url": "https://josemanuelbg.github.io/Portfolio/",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Sevilla",
+    "addressRegion": "Sevilla",
+    "addressCountry": "ES"
+  },
+  "knowsAbout": ["JavaScript", "TypeScript", "React", "Next.js", "Node", "Spring Boot", "Java", "Accesibilidad web"],
+  "sameAs": [
+    "https://github.com/JoseManuelbg",
+    "https://www.linkedin.com/in/josemanuelbg05/",
+    "https://codepen.io/JoseManuelbg"
+  ]
+}
+</script>
 </head>
 <body>
 
-<!-- CURSOR -->
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
 
-<!-- NAV -->
-<nav id="nav">
-  <a href="#" class="nav-logo">Jose<span>.</span>Manuel</a>
-  <ul class="nav-links">
-    <li><a href="#services">Servicios</a></li>
-    <li><a href="#work">Trabajos</a></li>
-    <li><a href="#pricing">Precios</a></li>
-    <li><a href="#about">Sobre mí</a></li>
-    <li><a href="#contact">Contacto</a></li>
-  </ul>
-</nav>
+<!-- Capas decorativas. Fijas, sin eventos y detrás de todo: son lo que el
+     cristal difumina. Puro CSS, no cuestan una petición. -->
+<div class="fondo" aria-hidden="true"></div>
+<div class="grano" aria-hidden="true"></div>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-bg-text">WEB</div>
-  <div class="hero-tag">Diseño web · Sevilla</div>
-  <h1 class="hero-headline">Tu negocio<br>merece una<br>web <em>que venda.</em></h1>
-  <div class="hero-bottom">
-    <p class="hero-desc">Diseño y desarrollo páginas web profesionales para negocios locales. Rápidas, seguras y con mantenimiento incluido.</p>
-    <a href="#contact" class="hero-cta">Hablemos <span class="arrow">→</span></a>
-  </div>
-  <div class="hero-scroll-line">
-    <span>Scroll</span>
-    <div class="scroll-bar"></div>
-  </div>
-</section>
-
-<!-- MARQUEE -->
-<div class="marquee-section">
-  <div class="marquee-track">
-    <span class="marquee-item">Diseño Web <span>✦</span></span>
-    <span class="marquee-item">Páginas Rápidas <span>✦</span></span>
-    <span class="marquee-item">Dominio Incluido <span>✦</span></span>
-    <span class="marquee-item">Mantenimiento Mensual <span>✦</span></span>
-    <span class="marquee-item">Seguridad SSL <span>✦</span></span>
-    <span class="marquee-item">Diseño Responsive <span>✦</span></span>
-    <span class="marquee-item">Negocios Locales <span>✦</span></span>
-    <span class="marquee-item">Diseño Web <span>✦</span></span>
-    <span class="marquee-item">Páginas Rápidas <span>✦</span></span>
-    <span class="marquee-item">Dominio Incluido <span>✦</span></span>
-    <span class="marquee-item">Mantenimiento Mensual <span>✦</span></span>
-    <span class="marquee-item">Seguridad SSL <span>✦</span></span>
-    <span class="marquee-item">Diseño Responsive <span>✦</span></span>
-    <span class="marquee-item">Negocios Locales <span>✦</span></span>
-  </div>
+<!-- Cinta de aviso: la gobierna AVISO.visible en datos.js. Apagada. -->
+<div class="aviso-maqueta" data-aviso hidden>
+  <span></span>
+  <button type="button" data-cerrar-aviso aria-label="Cerrar aviso">×</button>
 </div>
 
-<!-- SERVICES -->
-<section id="services">
-  <div class="section-label reveal">Servicios</div>
-  <h2 class="section-title reveal reveal-delay-1">Lo que <em>ofrezco</em></h2>
-  <div class="services-grid">
-    <div class="service-card reveal reveal-delay-1">
-      <div class="service-num">01</div>
-      <div class="service-name">Diseño & Desarrollo Web</div>
-      <p class="service-desc">Páginas web estáticas de alta velocidad, diseñadas a medida para tu negocio. Sin plantillas genéricas, sin relleno.</p>
-    </div>
-    <div class="service-card reveal reveal-delay-2">
-      <div class="service-num">02</div>
-      <div class="service-name">Hosting + Dominio</div>
-      <p class="service-desc">Infraestructura profesional incluida en la mensualidad. Tu web cargando en menos de 1 segundo en cualquier lugar del mundo.</p>
-    </div>
-    <div class="service-card reveal reveal-delay-3">
-      <div class="service-num">03</div>
-      <div class="service-name">Mantenimiento Mensual</div>
-      <p class="service-desc">Actualizaciones de contenido, seguridad activa y soporte continuo. Tu web siempre al día sin que tengas que preocuparte.</p>
-    </div>
+<header class="cabecera" data-cabecera>
+  <div class="cabecera__interior contenedor">
+    <a class="marca" href="#inicio"><span data-nombre-corto>José Manuel</span></a>
+
+    <button class="menu-boton" type="button" data-menu-boton aria-expanded="false" aria-controls="nav">
+      <span class="oculto-visual">Menú</span><span aria-hidden="true">☰</span>
+    </button>
+
+    <nav class="nav" id="nav" data-nav aria-label="Principal">
+      <a href="#trabajos" data-nav-clave="trabajos">Trabajos</a>
+      <a href="#servicios" data-nav-clave="servicios" data-solo="negocio">Qué hago</a>
+      <a href="#proceso" data-nav-clave="proceso" data-solo="negocio">Cómo trabajo</a>
+      <a href="#stack" data-nav-clave="stack" data-solo="tecnico">Stack</a>
+      <a href="#contacto" data-nav-clave="contacto">Contacto</a>
+      <button class="boton-idioma" type="button" data-idioma aria-label="Cambiar a inglés">English</button>
+    </nav>
   </div>
-</section>
+</header>
 
-<!-- WORK -->
-<section id="work">
-  <div class="section-label reveal">Proyectos</div>
-  <h2 class="section-title reveal reveal-delay-1">Trabajos <em>recientes</em></h2>
-  <div class="work-grid">
+<main id="contenido">
 
-    <a class="work-item reveal reveal-delay-1" href="https://josemanuelbg.github.io/Trabajo-LDM/" target="_blank">
-        <img src="media/dicomo.png" alt="La Bodega del Sur" style="width:100%; height:100%; object-fit:cover; display:block; ">
-      <div class="work-overlay">
-        <div class="work-tag">Tienda de muebles</div>
-        <div class="work-title">Dicomo</div>
+  <!-- ============ Héroe ============ -->
+  <section class="heroe" id="inicio">
+    <!-- La escena es decorativa: si Three.js no carga, queda el degradado
+         del velo sobre las manchas de .fondo y no se pierde nada. -->
+    <div class="escena" aria-hidden="true">
+      <canvas class="escena__lienzo" data-lienzo></canvas>
+      <div class="escena__velo"></div>
+    </div>
+
+    <div class="contenedor heroe__interior">
+      <div data-heroe-texto>
+        <p class="seccion__sobre" data-experiencia>Programando desde los 15 años.</p>
+        <h1 class="heroe__titulo" data-heroe-titulo>Hago webs que cargan rápido y aplicaciones que aguantan.</h1>
+        <p class="heroe__entrada" data-heroe-entrada>Desarrollador full-stack en Sevilla. Dime desde dónde llegas y te enseño lo que te interesa.</p>
       </div>
-    </a>
 
-    <a class="work-item reveal reveal-delay-2" href="https://josemanuelbg.github.io/Cafe-Demo/" target="_blank">
-              <img src="media/AromaCafe.png" alt="La Bodega del Sur" style="width:100%; height:100%; object-fit:cover; display:block; ">
-
-      <div class="work-overlay">
-        <div class="work-tag">Cafeteria</div>
-        <div class="work-title">Aroma Cafe</div>
+      <!-- Las dos mitades de la web: venta y portfolio. -->
+      <div class="selector">
+        <p class="selector__pregunta" data-selector-pregunta>¿Desde dónde llegas?</p>
+        <div class="selector__botones">
+          <button class="selector__boton" type="button" data-publico-boton="negocio" aria-pressed="false">
+            <span data-selector-texto="negocio">Tengo un negocio</span>
+            <span class="selector__pista" data-selector-texto="negocioPista">Quiero una web</span>
+          </button>
+          <button class="selector__boton" type="button" data-publico-boton="tecnico" aria-pressed="false">
+            <span data-selector-texto="tecnico">Soy técnico</span>
+            <span class="selector__pista" data-selector-texto="tecnicoPista">Enséñame el código</span>
+          </button>
+        </div>
       </div>
-    </a>
-    
-    <!--
-    <div class="work-item reveal reveal-delay-3">
-      <div class="work-item-bg"></div>
-      <div class="work-placeholder">TALLER</div>
-      <div class="work-overlay">
-        <div class="work-tag">Taller Mecánico</div>
-        <div class="work-title">AutoSur Jerez</div>
+
+      <p class="grupo-botones">
+        <a class="boton boton--lleno" data-email data-boton="email" href="mailto:josemanuelbabaciugheorghiu@gmail.com">Escríbeme por correo</a>
+        <a class="boton boton--borde" data-boton="verTrabajos" href="#trabajos">Ver trabajos</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Cinta deslizante: solo hechos de esta misma web. Se pinta desde datos.js
+       y se para con prefers-reduced-motion. -->
+  <div class="cinta" data-cinta aria-hidden="true"></div>
+
+  <noscript>
+    <div class="contenedor aviso-sinjs">
+      <p><strong>Esta página usa JavaScript para los listados y para cambiar de idioma.</strong>
+      Sin él verás el texto principal y el contacto, que es lo importante.
+      Escríbeme a <a href="mailto:josemanuelbabaciugheorghiu@gmail.com">josemanuelbabaciugheorghiu@gmail.com</a>
+      o mira mi código en <a href="https://github.com/JoseManuelbg" rel="noopener">github.com/JoseManuelbg</a>.</p>
+    </div>
+  </noscript>
+
+  <!-- ============ Trabajos (los dos públicos) ============ -->
+  <section class="seccion" id="trabajos">
+    <div class="contenedor">
+      <p class="seccion__sobre" data-texto="trabajosSobre">Trabajos</p>
+      <h2 data-texto="trabajosTitulo">Cinco cosas que he hecho y puedes abrir</h2>
+      <div class="rejilla rejilla--2" data-proyectos>
+        <!-- Se pinta desde DATOS.proyectos -->
       </div>
     </div>
-    <div class="work-item reveal reveal-delay-4">
-      <div class="work-item-bg"></div>
-      <div class="work-placeholder">ESTUD.</div>
-      <div class="work-overlay">
-        <div class="work-tag">Estudio Jurídico</div>
-        <div class="work-title">Bufete García & Asociados</div>
+  </section>
+
+  <!-- ============ Qué hago (venta) ============ -->
+  <section class="seccion" id="servicios" data-solo="negocio">
+    <div class="contenedor">
+      <p class="seccion__sobre" data-texto="serviciosSobre">Qué hago</p>
+      <h2 data-texto="serviciosTitulo">Lo que puedo hacer por tu negocio</h2>
+      <div class="rejilla rejilla--3" data-servicios>
+        <!-- Se pinta desde DATOS.servicios -->
       </div>
     </div>
+  </section>
+
+  <!-- ============ Cómo trabajo (venta) ============ -->
+  <section class="seccion" id="proceso" data-solo="negocio">
+    <div class="contenedor">
+      <p class="seccion__sobre" data-texto="procesoSobre">Cómo trabajo</p>
+      <h2 data-texto="procesoTitulo">Cuatro pasos y sin sorpresas</h2>
+      <ol class="proceso" data-proceso>
+        <!-- Se pinta desde DATOS.proceso -->
+      </ol>
+      <p class="grupo-botones" style="margin-top:2.5rem">
+        <a class="boton boton--lleno" data-email data-boton="presupuesto" href="mailto:josemanuelbabaciugheorghiu@gmail.com">Pedir presupuesto</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ Stack (portfolio) ============ -->
+  <section class="seccion" id="stack" data-solo="tecnico">
+    <div class="contenedor">
+      <p class="seccion__sobre" data-texto="stackSobre">Stack</p>
+      <h2 data-texto="stackTitulo">Con qué trabajo</h2>
+      <div class="stack" data-stack>
+        <!-- Se pinta desde DATOS.stack -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Contacto (los dos públicos) ============ -->
+  <section class="seccion" id="contacto">
+    <div class="contenedor">
+      <p class="seccion__sobre" data-texto="contactoSobre">Contacto</p>
+      <h2 data-texto="contactoTitulo">Escríbeme</h2>
+
+      <div class="vidrio contacto-panel revelar">
+        <div class="rejilla rejilla--2">
+          <div>
+            <p data-texto="contactoEntrada">El correo es la vía rápida: contesto el mismo día.</p>
+            <p class="grupo-botones">
+              <a class="boton boton--lleno" data-email data-boton="email" href="mailto:josemanuelbabaciugheorghiu@gmail.com">Escríbeme por correo</a>
+              <!-- Se convierte en enlace real cuando exista el PDF. -->
+              <span class="pendiente" data-cv>CV en PDF: pendiente</span>
+            </p>
+            <ul class="contacto">
+              <li><a data-email data-email-texto href="mailto:josemanuelbabaciugheorghiu@gmail.com">josemanuelbabaciugheorghiu@gmail.com</a></li>
+              <li><a data-github href="https://github.com/JoseManuelbg" target="_blank" rel="noopener">GitHub · JoseManuelbg</a></li>
+              <li><a data-linkedin href="https://www.linkedin.com/in/josemanuelbg05/" target="_blank" rel="noopener">LinkedIn</a></li>
+              <li><a data-codepen href="https://codepen.io/JoseManuelbg" target="_blank" rel="noopener">CodePen</a></li>
+            </ul>
+            <p class="contacto__lugar" data-ubicacion>Sevilla, España</p>
+          </div>
+
+          <div class="retrato-marco">
+            <!-- [PENDIENTE: foto decente] Ahora está el avatar de GitHub, que es
+                 una foto de carnet de baja resolución. Cambiar antes de enseñarla. -->
+            <img class="retrato" data-foto src="assets/img/retrato.jpg" width="440" height="440"
+                 alt="Retrato de José Manuel Babaciu Gheorghiu" loading="lazy" decoding="async">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pie">
+  <div class="contenedor pie__interior">
+    <p class="pie__legal">© <span data-anio>2026</span> <span data-nombre>José Manuel Babaciu Gheorghiu</span> · <span data-ubicacion>Sevilla, España</span></p>
+    <p class="pie__enlaces"><a href="privacidad.html">Privacidad</a></p>
   </div>
-  
-  <div class="work-bar reveal">
-    <div class="work-count">12+</div>
-    <a href="#contact" class="work-cta-link">Ver todos los proyectos →</a>
-  </div>
--->
-</section>
-
-<!-- PRICING -->
-<section id="pricing">
-  <div class="section-label reveal">Tarifas</div>
-  <h2 class="section-title reveal reveal-delay-1">Inversión <em>sin sorpresas</em></h2>
-  <div class="pricing-grid">
-    <div class="price-card reveal reveal-delay-1">
-      <div class="price-name">Básico</div>
-      <div class="price-setup">299 <span>€ / web</span></div>
-      <div class="price-monthly">+ 29 €/mes</div>
-      <div class="price-divider"></div>
-      <ul class="price-features">
-        <li>Hasta 3 secciones</li>
-        <li>Dominio incluido</li>
-        <li>Hosting profesional</li>
-        <li>Diseño responsive</li>
-        <li>SSL + seguridad</li>
-        <li>1 actualización/mes</li>
-      </ul>
-      <a href="#contact" class="price-btn">Empezar →</a>
-    </div>
-    <div class="price-card featured reveal reveal-delay-2">
-      <div class="price-badge">Más popular</div>
-      <div class="price-name">Profesional</div>
-      <div class="price-setup">499 <span>€ / web</span></div>
-      <div class="price-monthly">+ 39 €/mes</div>
-      <div class="price-divider"></div>
-      <ul class="price-features">
-        <li>Hasta 6 secciones</li>
-        <li>Dominio + correo corporativo</li>
-        <li>Hosting premium</li>
-        <li>Diseño personalizado</li>
-        <li>SSL + seguridad avanzada</li>
-        <li>Actualizaciones ilimitadas</li>
-        <li>Google Analytics</li>
-        <li>Formulario de contacto</li>
-      </ul>
-      <a href="#contact" class="price-btn">Empezar →</a>
-    </div>
-    <div class="price-card reveal reveal-delay-3">
-      <div class="price-name">Premium</div>
-      <div class="price-setup">799 <span>€ / web</span></div>
-      <div class="price-monthly">+ 59 €/mes</div>
-      <div class="price-divider"></div>
-      <ul class="price-features">
-        <li>Secciones ilimitadas</li>
-        <li>Dominio + correos ilimitados</li>
-        <li>Hosting dedicado</li>
-        <li>Diseño 100% a medida</li>
-        <li>SEO básico incluido</li>
-        <li>Actualizaciones ilimitadas</li>
-        <li>Analítica avanzada</li>
-        <li>Soporte prioritario</li>
-      </ul>
-      <a href="#contact" class="price-btn">Empezar →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div>
-    <div class="about-statement reveal">
-      Diseño webs que<br>trabajan<br>mientras<br>tú <em>duermes.</em>
-    </div>
-    <div class="about-divider reveal reveal-delay-1"></div>
-    <div class="about-stats reveal reveal-delay-2">
-      <div class="stat-box">
-        <div class="stat-num">12+</div>
-        <div class="stat-label">Proyectos completados</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num">100%</div>
-        <div class="stat-label">Clientes satisfechos</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num">24h</div>
-        <div class="stat-label">Tiempo de respuesta</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num">3+</div>
-        <div class="stat-label">Años de experiencia</div>
-      </div>
-    </div>
-  </div>
-  <div>
-    <div class="section-label reveal">Sobre mí</div>
-    <h2 class="section-title reveal reveal-delay-1">¿Quién hay<br>detrás de<br>la <em>pantalla?</em></h2>
-    <p class="about-text reveal reveal-delay-2">Soy José Manuel, diseñador web freelance con base en Sevilla. Me especializo en crear páginas web para negocios locales que quieren tener una presencia digital profesional sin complicaciones.</p>
-    <p class="about-text reveal reveal-delay-3">Mi enfoque es simple: webs rápidas, bonitas y que funcionen. Sin tecnicismos, sin presupuestos inflados, sin sorpresas. Tú te centras en tu negocio, yo me encargo del resto.</p>
-    <a href="#contact" class="hero-cta reveal reveal-delay-4" style="margin-top: 2rem; display: inline-flex;">Hablemos →</a>
-  </div>
-</section>
-
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="contact-inner">
-    <div>
-      <div class="section-label reveal">Contacto</div>
-      <div class="contact-big reveal reveal-delay-1">¿Tienes<br>un proyecto<br><em>en mente?</em></div>
-      <div class="contact-email reveal reveal-delay-2">
-        O escríbeme directamente:<br>
-        <a href="mailto:josemanuelbabaciugheorghiu@gmail.com">josemanuelbabaciugheorghiu@gmail.com</a>
-      </div>
-    </div>
-    <form class="contact-form reveal reveal-delay-2" onsubmit="return false;">
-      <div class="form-group">
-        <label>Nombre</label>
-        <input type="text" placeholder="Tu nombre">
-      </div>
-      <div class="form-group">
-        <label>Email</label>
-        <input type="email" placeholder="tu@email.com">
-      </div>
-      <div class="form-group">
-        <label>Negocio</label>
-        <input type="text" placeholder="¿A qué te dedicas?">
-      </div>
-      <div class="form-group">
-        <label>Mensaje</label>
-        <textarea rows="4" placeholder="Cuéntame qué necesitas..."></textarea>
-      </div>
-      <button type="submit" class="form-submit">Enviar mensaje →</button>
-    </form>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <a href="#" class="footer-logo">Jose<span>.</span>Manuel</a>
-  <p class="footer-copy">© 2025 Jose Manuel · Diseño web en Sevilla</p>
 </footer>
 
-<script src="script.js"></script>
+<!-- GSAP autoalojado, nunca por CDN: así la CSP se queda en default-src 'self'.
+     Si estos dos no cargaran, app.js cae solo a IntersectionObserver. -->
+<script src="assets/lib/gsap.min.js?v=2" defer></script>
+<script src="assets/lib/ScrollTrigger.min.js?v=2" defer></script>
+<script src="assets/datos.js?v=2" defer></script>
+<script src="assets/app.js?v=2" defer></script>
 </body>
 </html>

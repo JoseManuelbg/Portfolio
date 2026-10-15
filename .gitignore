@@ -1,0 +1,27 @@
+# Sistema y editores
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Nada de dependencias: este proyecto no tiene build ni node_modules.
+node_modules/
+
+# --- Documentación interna: NO se sube ni se despliega -------------------
+# GitHub Pages (y Cloudflare) sirven todo lo que hay en el repo, así que un MENSAJE.md
+# aquí sería legible en la URL pública de la web. Dentro está la
+# estrategia de precios y qué datos son inventados: eso no lo puede leer
+# el cliente. Se queda en local, en esta misma carpeta.
+MENSAJE.md
+
+# Fotos originales sin optimizar: material de trabajo, no se despliegan.
+assets/fotos/originales/*
+!assets/fotos/originales/LEEME.txt
+
+# Diario de sesiones del modo live de Impeccable: estado, no fuente.
+.impeccable/live/sessions/
+
+# --- El brief tiene decisiones comerciales y motivos por los que se descartan
+# proyectos ajenos. Este repositorio es PUBLICO: el brief se queda en local. ---
+docs/

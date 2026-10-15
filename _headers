@@ -1,0 +1,35 @@
+# Cabeceras para Cloudflare Pages. Las lee Cloudflare al desplegar; en local no hacen nada.
+# OJO: GitHub Pages, que es donde esta publicada ahora la web, IGNORA este fichero.
+# Se conserva por si se mueve a Cloudflare, que es donde la CSP entraria en vigor.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()
+  # La web no carga NADA de terceros: ni scripts, ni estilos, ni tipografías.
+  # GSAP y Three.js están descargados en assets/lib/, justo para poder dejar
+  # default-src en 'self' sin excepciones. Si algún día se mete un tercero,
+  # esta línea hay que abrirla: piénsalo dos veces antes.
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; form-action 'self'; frame-ancestors 'self'; base-uri 'self'; object-src 'none'
+
+# El HTML NUNCA se cachea: es el que trae el ?v=N de los assets. Si se queda
+# viejo, el navegador sigue pidiendo el CSS antiguo y no se ve ningún cambio.
+/*.html
+  Cache-Control: no-cache
+
+/
+  Cache-Control: no-cache
+
+# CSS y JS se piden con ?v=N: al subir el número cambia la URL y se bajan de nuevo.
+/assets/*
+  Cache-Control: public, max-age=604800
+
+# Las librerías van con versión fija en el nombre del directorio: no cambian.
+/assets/lib/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Las tipografías no cambian nunca: un año.
+/assets/fuentes/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *

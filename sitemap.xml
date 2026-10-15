@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- [PENDIENTE: dominio propio] Actualizar las URL al comprarlo.
+     Al añadir o quitar páginas hay que actualizarlo aquí. La 404 no entra,
+     y gracias.html tampoco porque lleva noindex. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://josemanuelbg.github.io/Portfolio/</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://josemanuelbg.github.io/Portfolio/privacidad.html</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+</urlset>
